@@ -1,0 +1,21 @@
+// Python 3 Bottom Up
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        dp = [0]*(n+1)
+        dp[1] = 1
+        i2 = dp[1]
+        i3 = dp[1]
+        i5 = dp[1]
+        for i in range(2, n+1):
+            i2th = dp[i2]*2
+            i3th = dp[i3]*3
+            i5th = dp[i5]*5
+            ithugly = min(i2th, i3th, i5th)
+            dp[i] = ithugly
+            if(i2th == ithugly):
+                i2 += 1
+            if(i3th == ithugly):
+                i3 += 1
+            if(i5th == ithugly):
+                i5 += 1
+        return dp[n]
